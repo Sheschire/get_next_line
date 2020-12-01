@@ -14,20 +14,21 @@ static int		ft_line(char **line, char **save)
 		{
 			*line = ft_substr(*save, 0, j);		
 			tmp = ft_substr(save[i], j + 1, ft_strlen(save[i] + j));
+			free(*save);
 			*save = tmp;
 			return (1);
 		}
 		j++;
 	}
 	if (!save[i][j] || !save[i][j + 1])
-		free (save[i]);
+		free (*save);
 	return(0);
 }
 
 int	get_next_line(int fd, char **line)
 {
 	int			n_read;
-	static char		buf[BUFFER_SIZE + 1];
+	static char	buf[BUFFER_SIZE + 1];
 	static char	*save;
 	char		*tmp;
 
@@ -47,7 +48,7 @@ int	get_next_line(int fd, char **line)
 	if (n_read > 0)
 		return (ft_line(line, &save));
 	if (n_read < 0)
-			return (-1);
+		return (-1);
 	if (n_read == 0 && save)
 		*line = save;
 	if (n_read == 0 && !save)
