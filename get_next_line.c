@@ -8,20 +8,19 @@ static int		ft_line(char **line, char **save)
 
 	i = 0;
 	j = 0;
-	while (save[i][j])
-	{
-		if (save[i][j] == '\n')
-		{
-			*line = ft_substr(*save, 0, j);		
-			tmp = ft_substr(save[i], j + 1, ft_strlen(save[i] + j));
-			free(*save);
-			*save = tmp;
-			return (1);
-		}
+	while (save[i][j] != '\n')
 		j++;
-	}
 	if (!save[i][j] || !save[i][j + 1])
 		free (*save);
+	else
+	{
+		*line = ft_substr(*save, 0, j);		
+		tmp = ft_substr(save[i], j + 1, ft_strlen(save[i] + j));
+		free(*save);
+		*save = tmp;
+		return (1);
+	}
+
 	return(0);
 }
 
