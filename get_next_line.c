@@ -13,14 +13,14 @@ static int		ft_line(char **line, char **save)
 		if (save[i][j] == '\n')
 		{
 			*line = ft_substr(*save, 0, j);		
-			tmp = ft_substr(save[i], j + 1, ft_strlen(save[i]));
-			free(*save);
+			tmp = ft_substr(save[i], j + 1, ft_strlen(save[i] + j));
 			*save = tmp;
-			free(tmp);
 			return (1);
 		}
 		j++;
 	}
+	if (!save[i][j] || !save[i][j + 1])
+		free (save[i]);
 	return(0);
 }
 
@@ -39,12 +39,10 @@ int	get_next_line(int fd, char **line)
 		if (save == NULL)
 			tmp = ft_substr(buf, 0, ft_strlen(buf));
 		else
-		{
 			tmp = ft_strjoin(save, buf);
+		if (save)
 			free(save);
-		}
 		save = tmp;
-		free(tmp);
 	}
 	if (n_read > 0)
 		return (ft_line(line, &save));
