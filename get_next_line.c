@@ -38,11 +38,14 @@ static int		ft_line(char **line, char **save)
 		free(save);
 		return (0);
 	}
-	*line = ft_substr(save[i], 0, j);
-	tmp = ft_substr(save[i], j + 1, ft_strlen(save[i] + j));
-	free(*save);
-	*save = tmp;
-	return (1);
+	else
+	{
+		*line = ft_substr(save[i], 0, j);
+		tmp = ft_substr(save[i], j + 1, ft_strlen(save[i] + j));
+		free(*save);
+		*save = tmp;
+		return (1);
+	}
 }
 
 int	get_next_line(int fd, char **line)
@@ -75,7 +78,7 @@ int	get_next_line(int fd, char **line)
 		*line = ft_strdup("");
 	return (0);
 }
-/*
+
 int main()
 {
 	int fd;
@@ -89,4 +92,4 @@ int main()
 	if (get_next_line(fd, &line) == 0)
 		printf("!!!! LAST LINE == %s\n", line);
 	return (0);
-}*/
+}
