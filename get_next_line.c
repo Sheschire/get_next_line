@@ -19,9 +19,10 @@ static int		ft_line(char **line, char **save)
 		*line = ft_substr(save[0], 0, j);
 		if (save[0][j + 1])
 			tmp = ft_substr(save[0], j + 1, ft_strlen(save[0] + j));
+		else
+			tmp = "";
 		free(*save);
-		if (save[0][j + 1])
-			*save = tmp;
+		*save = tmp;
 		return (1);
 	}
 }
