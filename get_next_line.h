@@ -6,7 +6,7 @@
 /*   By: tlemesle <tlemesle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/26 15:51:56 by tlemesle          #+#    #+#             */
-/*   Updated: 2020/12/01 11:04:13 by tlemesle         ###   ########.fr       */
+/*   Updated: 2020/12/02 11:28:19 by tlemesle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@
 # include <stdlib.h>
 
 #ifndef BUFFER_SIZE
-# define BUFFER_SIZE 10
+# define BUFFER_SIZE 3
 #endif
 
 char	*ft_strjoin(char const *s1, char const *s2);
