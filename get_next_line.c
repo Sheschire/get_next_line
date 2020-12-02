@@ -20,7 +20,8 @@ static int		ft_line(char **line, char **save)
 		if (save[0][j + 1])
 			tmp = ft_substr(save[0], j + 1, ft_strlen(save[0] + j));
 		free(*save);
-		*save = tmp;
+		if (save[0][j + 1])
+			*save = tmp;
 		return (1);
 	}
 }
@@ -54,20 +55,5 @@ int	get_next_line(int fd, char **line)
 		*line = save;
 	if (n_read == 0 && !save)
 		*line = ft_strdup("");
-	return (0);
-}
-
-int main()
-{
-	int fd;
-	char *line;
-
-	fd = open("test.txt", O_RDONLY);
-	if (fd == -1)
-		return (-1);
-	while (get_next_line(fd, &line) > 0)
-		printf("LINE = %s\n", line);
-	if (get_next_line(fd, &line) == 0)
-		printf("!!!! LAST LINE == %s\n", line);
 	return (0);
 }
