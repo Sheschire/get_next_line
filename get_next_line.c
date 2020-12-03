@@ -6,20 +6,20 @@
 /*   By: tlemesle <tlemesle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/03 11:40:06 by tlemesle          #+#    #+#             */
-/*   Updated: 2020/12/03 11:40:09 by tlemesle         ###   ########.fr       */
+/*   Updated: 2020/12/03 13:40:44 by tlemesle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-static int		ft_line(int fd, char **line, char *save[fd], char *str)
+static int	ft_line(int fd, char **line, char *save[fd], char *str)
 {
 	char	*tmp;
 
 	if (str)
 	{
 		*line = ft_substr(*save, 0, str - *save);
-		tmp = ft_substr(str, 1, ft_strlen(str));
+		tmp = ft_substr(str + 1, 0, ft_strlen(str + 1));
 		free(*save);
 		*save = tmp;
 		return (1);
@@ -34,7 +34,7 @@ static int		ft_line(int fd, char **line, char *save[fd], char *str)
 	return (0);
 }
 
-int	get_next_line(int fd, char **line)
+int			get_next_line(int fd, char **line)
 {
 	static char	*save[256];
 	int			n_read;
@@ -45,7 +45,8 @@ int	get_next_line(int fd, char **line)
 	n_read = 1;
 	if (fd < 0 || !line || BUFFER_SIZE <= 0)
 		return (-1);
-	while ((str = ft_strchr(save[fd], '\n')) == 0 && ((n_read = read(fd, buf, BUFFER_SIZE)) > 0))
+	while ((str = ft_strchr(save[fd], '\n')) == 0 && \
+	((n_read = read(fd, buf, BUFFER_SIZE)) > 0))
 	{
 		buf[n_read] = '\0';
 		if (save[fd] == NULL)
@@ -58,5 +59,5 @@ int	get_next_line(int fd, char **line)
 	}
 	if (n_read < 0)
 		return (-1);
-	return(ft_line(fd, line, &save[fd], str));
+	return (ft_line(fd, line, &save[fd], str));
 }

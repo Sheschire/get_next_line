@@ -6,7 +6,7 @@
 /*   By: tlemesle <tlemesle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/26 15:47:48 by tlemesle          #+#    #+#             */
-/*   Updated: 2020/12/03 11:40:30 by tlemesle         ###   ########.fr       */
+/*   Updated: 2020/12/03 13:51:28 by tlemesle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 char	*ft_strjoin(char const *s1, char const *s2)
 {
 	char	*res;
-	int	    i;
+	int		i;
 	int		j;
 
 	j = 0;
@@ -76,7 +76,7 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 	sub = (char *)malloc(sizeof(char) * len + 1);
 	if (sub == NULL)
 		return (0);
-	if (start >= (unsigned int)ft_strlen(s))
+	if (start > (unsigned int)ft_strlen(s))
 		return (ft_strdup(""));
 	while (i < len)
 	{
@@ -88,20 +88,20 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 	return (sub);
 }
 
-char    *ft_strchr(const char *s, int c)
+char	*ft_strchr(const char *s, int c)
 {
-    size_t        i;
+	size_t	i;
 
-    if (s == 0)
-        return (0);
-    i = 0;
-    if (c == 0)
-        return ((char *)s + ft_strlen(s));
-    while (s[i])
-    {
-        if (s[i] == (unsigned char)c)
-            return ((char *)s + i);
-        i++;
-    }
-    return (0);
+	if (s == 0)
+		return (0);
+	i = 0;
+	if (c == 0)
+		return ((char *)s + ft_strlen(s));
+	while (s[i])
+	{
+		if (s[i] == (unsigned char)c)
+			return ((char *)s + i);
+		i++;
+	}
+	return (0);
 }
