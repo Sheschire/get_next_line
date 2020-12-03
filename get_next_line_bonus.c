@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.c                                    :+:      :+:    :+:   */
+/*   get_next_line_bonus.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tlemesle <tlemesle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/12/03 11:40:06 by tlemesle          #+#    #+#             */
-/*   Updated: 2020/12/03 11:40:09 by tlemesle         ###   ########.fr       */
+/*   Created: 2020/12/03 11:39:52 by tlemesle          #+#    #+#             */
+/*   Updated: 2020/12/03 11:39:56 by tlemesle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
+#include "get_next_line_bonus.h"
 
 static int		ft_line(int fd, char **line, char *save[fd], char *str)
 {
@@ -38,7 +38,7 @@ int	get_next_line(int fd, char **line)
 {
 	static char	*save[256];
 	int			n_read;
-	static char	buf[BUFFER_SIZE + 1];
+	char		buf[BUFFER_SIZE + 1];
 	char		*tmp;
 	char		*str;
 
