@@ -1,25 +1,21 @@
 #include "get_next_line.h"
 
-static int		ft_line(char **line, char **save)
+static int		ft_line(char **line, char **save, char *str)
 {
 	char	*tmp;
-	int		i;
 
-	i = 0;
-	while (save[0][i] != '\n')
-		i++;
-	if (save[0][i + 1])
+	if (str)
 	{
-		*line = ft_substr(*save, 0, i);
-		tmp = ft_substr(*save, i + 1, ft_strlen(*save + i));
-		free(save);
+		*line = ft_substr(*save, 0, str - *save);
+		tmp = ft_substr(str, 1, ft_strlen(str));
+		free(*save);
 		*save = tmp;
 		return (1);
 	}
-	if (save)
+	if (*save)
 	{
-		*line = save;
-		save = NULL;
+		*line = *save;
+		*save = NULL;
 	}
 	else
 		*line = ft_strdup("");
@@ -32,11 +28,12 @@ int	get_next_line(int fd, char **line)
 	static char	buf[BUFFER_SIZE + 1];
 	static char	*save;
 	char		*tmp;
+	char		*str;
 
 	n_read = 1;
 	if (fd < 0 || !line || BUFFER_SIZE <= 0)
 		return (-1);
-	while (ft_strchr(save, '\n') == 0 && ((n_read = read(fd, buf, BUFFER_SIZE)) > 0))
+	while ((str = ft_strchr(save, '\n')) == 0 && ((n_read = read(fd, buf, BUFFER_SIZE)) > 0))
 	{
 		buf[n_read] = '\0';
 		if (save == NULL)
@@ -49,5 +46,5 @@ int	get_next_line(int fd, char **line)
 	}
 	if (n_read < 0)
 		return (-1);
-	return(ft_line(line, &save));
+	return(ft_line(line, &save, str));
 }

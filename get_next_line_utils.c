@@ -6,7 +6,7 @@
 /*   By: tlemesle <tlemesle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/26 15:47:48 by tlemesle          #+#    #+#             */
-/*   Updated: 2020/12/01 15:04:08 by tlemesle         ###   ########.fr       */
+/*   Updated: 2020/12/03 10:20:43 by tlemesle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +87,7 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 	sub[i] = '\0';
 	return (sub);
 }
-
+/*
 char	*ft_strchr(const char *s, int c)
 {
 	char	*str;
@@ -99,11 +99,28 @@ char	*ft_strchr(const char *s, int c)
 	str = (char *)s;
 	while (str[i])
 	{
-		if (str[i] == c)
-			return (str + i);
+		if (str[i] == (unsigned char)c)
+			return ((char *)str + i);
 		i++;
 	}
 	if (c == '\0')
-		return (str + i);
+		return ((char *)str + i);
 	return (0);
+}*/
+char    *ft_strchr(const char *s, int c)
+{
+    size_t        i;
+
+    if (s == 0)
+        return (0);
+    i = 0;
+    if (c == 0)
+        return ((char *)s + ft_strlen(s));
+    while (s[i])
+    {
+        if (s[i] == (unsigned char)c)
+            return ((char *)s + i);
+        i++;
+    }
+    return (0);
 }
